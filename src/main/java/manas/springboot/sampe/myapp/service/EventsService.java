@@ -16,11 +16,11 @@ public interface EventsService {
 	void updateEvent(Event event);
 	
 	
-	void deleteUserById(Long id);
+	void deleteEventById(Long id);
 
-	void deleteAllUsers();
+	void deleteAllEvents();
 
-	List<Event> findAllUsers();
+	List<Event> findAllEvents();
 
-	boolean isUserExist(Event event);
+	boolean isEventExist(Event event);
 }

@@ -35,20 +35,20 @@ public class EventsServiceImpl implements EventsService{
 		saveEvent(event);
 	}
 	
-	public void deleteUserById(Long id){
+	public void deleteEventById(Long id){
 		eventsRepository.delete(id);
 	}
 
-	public void deleteAllUsers(){
+	public void deleteAllEvents(){
 		eventsRepository.deleteAll();
 	}
 
 	
-	public List<Event> findAllUsers(){
+	public List<Event> findAllEvents(){
 		return eventsRepository.findAll();
 	}
 
-	public boolean isUserExist(Event event) {
+	public boolean isEventExist(Event event) {
 		return findByName(event.getName()) != null;
 	}
 
