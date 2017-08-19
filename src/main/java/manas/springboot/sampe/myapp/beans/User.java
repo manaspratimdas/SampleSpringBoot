@@ -1,12 +1,17 @@
 package manas.springboot.sampe.myapp.beans;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,9 +20,11 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "USE_ID")
 	private long id;
 
 	@Column(name = "USERNAME")
+	
 	private String username;
 
 	@Column(name = "PASSWORD")
@@ -28,6 +35,11 @@ public class User implements Serializable {
 
 	@Column(name = "STATE")
 	private String state;
+	
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "USER_INTEREST", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = { @JoinColumn(name = "INTEREST_ID") })
+	private Set<Interest> interests;
 
 	public long getId() {
 		return id;

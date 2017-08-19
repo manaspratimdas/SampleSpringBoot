@@ -17,6 +17,7 @@ public class Interest implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "INTEREST_ID")
 	private int id;
 
 	@Column(name = "NAME")
@@ -24,6 +25,10 @@ public class Interest implements Serializable {
 
 	@Column(name = "DESCRIPTION")
 	private String description;
+	
+	
+	
+
 
 	public int getId() {
 		return id;
@@ -59,29 +64,7 @@ public class Interest implements Serializable {
 		return result;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Interest other = (Interest) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (id != other.id)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
-	}
+	
 
 	@Override
 	public String toString() {
