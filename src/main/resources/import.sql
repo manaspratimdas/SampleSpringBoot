@@ -1,3 +1,5 @@
+INSERT INTO Account(ID,USERNAME,PASSWORD) VALUES(1,'manas','manas');
+
 insert into  USER(USER_ID,username , password, city,state) values (1,'samaya','samaya123','bhubaneswar','odisha');
 insert into  USER(USER_ID,username , password, city,state) values (2,'manas','manas123','guhwathi','assam');
 insert into  USER(USER_ID,username , password, city,state) values (3,'tejas','tejas123','bikanar','rajasthan');
