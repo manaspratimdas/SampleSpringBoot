@@ -3,19 +3,25 @@ package manas.springboot.sampe.myapp.beans;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Entity")
+@Table(name = "EVENT")
 public class Event implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "EVENT_ID")
 	private int id;
 
 	@Column(name = "NAME")
@@ -32,6 +38,15 @@ public class Event implements Serializable {
 
 	@Column(name = "isDeal")
 	private boolean isDeal = Boolean.FALSE;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "INTEREST_ID")
+	private Interest interest;
+	
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "EVENT_USER", joinColumns = { @JoinColumn(name = "EVENT_ID") }, inverseJoinColumns = { @JoinColumn(name = "USER_ID") })
+	private Set<User> users;
 
 	public int getId() {
 		return id;
