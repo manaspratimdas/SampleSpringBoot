@@ -16,11 +16,11 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" href="#collapse1">Collapsible panel</a>
+        <a data-toggle="collapse" href="#collapse1" id="datareceived">Collapsible panel</a>
       </h4>
     </div>
     <div id="collapse1" class="panel-collapse collapse">
-      <div class="panel-body">Panel Body</div>
+      <div class="panel-body" id="">Panel Body</div>
       <div class="panel-footer">Panel Footer</div>
     </div>
   </div>
@@ -35,42 +35,10 @@
 	
 <script type="text/javascript">
 
-$(function() {
-	
-	$("#event").validate({
-	    // Specify validation rules
-	    rules: {
-	     
-	    	name: {
-		        required: true,
-		        minlength: 3
-		      },
-		      description: {
-		        required: true,
-		        minlength: 50
-		      },
-		      location:"required",
-		      date:{
-	          required: true,
-	          date: true
-	        },
-	    },
-	    // Specify validation error messages
-	    messages: {
-	    	name: "Event name is required",
-	    	description: "Event description is required and needs at least 50 charactes",
-	    	location: "Event location is required",
-	    	date:"Event date is required"
-	    },
-	    // Make sure the form is submitted to the destination defined
-	    // in the "action" attribute of the form when valid
-	    submitHandler: function(form) {
-	      form.submit();
-	    }
-	  });
-	
-	
-});
+
+	$.post( "/api/event", function( data ) {
+		  $( "#datareceived" ).html( data );
+		});
 
 </script>
 

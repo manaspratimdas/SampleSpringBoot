@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import manas.springboot.sampe.myapp.beans.Event;
@@ -21,7 +21,7 @@ import manas.springboot.sampe.myapp.util.CustomErrorType;
 
 
 
-@RestController
+@Controller
 @RequestMapping("/api")
 public class RestApiController {
 
@@ -32,14 +32,16 @@ public class RestApiController {
 
 	// -------------------Retrieve All Events---------------------------------------------
 
-	@RequestMapping(value = "/event/", method = RequestMethod.GET)
-	public ResponseEntity<List<Event>> listAllEvents() {
+	@RequestMapping(value = "/event", method = RequestMethod.GET)
+	public ResponseEntity listAllEvents() {
+		
+		System.out.println("list added");
 		List<Event> events = eventsService.findAllEvents();
 		if (events.isEmpty()) {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 			// You many decide to return HttpStatus.NOT_FOUND
 		}
-		return new ResponseEntity<List<Event>>(events, HttpStatus.OK);
+		return new ResponseEntity(events, HttpStatus.OK);
 	}
 
 	// -------------------Retrieve Single Event------------------------------------------
@@ -59,19 +61,17 @@ public class RestApiController {
 	// -------------------Create a Event-------------------------------------------
 
 	@RequestMapping(value = "/event/", method = RequestMethod.POST,consumes="application/json",headers = "content-type=application/x-www-form-urlencoded")
-	public ResponseEntity<?> createEvent(Event event, UriComponentsBuilder ucBuilder) {
+	public String createEvent(Event event, UriComponentsBuilder ucBuilder) {
 		logger.info("Creating Event : {}", event);
 
 		if (eventsService.isEventExist(event)) {
 			logger.error("Unable to create. A Event with name {} already exist", event.getName());
-			return new ResponseEntity(new CustomErrorType("Unable to create. A Event with name " + 
-			event.getName() + " already exist."),HttpStatus.CONFLICT);
+			return "";
 		}
 		eventsService.saveEvent(event);
-
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(ucBuilder.path("/api/event/{id}").buildAndExpand(event.getId()).toUri());
-		return new ResponseEntity<String>(headers, HttpStatus.CREATED);
+		return "eventCreated";
 	}
 
 	// ------------------- Update a Event ------------------------------------------------
