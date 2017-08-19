@@ -14,6 +14,7 @@ import javax.persistence.Table;
 @Table(name = "Entity")
 public class Event implements Serializable {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;

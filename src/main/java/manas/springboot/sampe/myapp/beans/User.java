@@ -13,6 +13,8 @@ import javax.persistence.Table;
 @Table(name = "User")
 public class User implements Serializable {
 
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
