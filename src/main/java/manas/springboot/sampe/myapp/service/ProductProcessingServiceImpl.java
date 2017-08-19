@@ -10,30 +10,30 @@ import manas.springboot.sampe.myapp.repository.ProductRepository;
 
 @Service("productProcessingService")
 public class ProductProcessingServiceImpl implements ProductProcessingService {
-	
+
 	@Autowired
 	ProductRepository repository;
-	
-	public Product getProductById(Long id){
-		
+
+	public Product getProductById(Long id) {
+
 		return repository.findById(id);
-		
+
 	}
 
 	public Product save(Product product) {
-		
+
 		return repository.save(product);
-		
+
 	}
 
 	public void delete(Long id) {
-		
+
 		repository.delete(id);
-		
+
 	}
 
 	public List<Product> findAll() {
-		
+
 		return repository.findAll();
 	}
 }

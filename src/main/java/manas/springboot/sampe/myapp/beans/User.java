@@ -1,7 +1,6 @@
 package manas.springboot.sampe.myapp.beans;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,23 +10,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="User")
+@Table(name = "User")
 public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@Column(name="USERNAME")
+	@Column(name = "USERNAME")
 	private String username;
-	
-	@Column(name="PASSWORD")
+
+	@Column(name = "PASSWORD")
 	private String password;
 
-	@Column(name="CITY")
+	@Column(name = "CITY")
 	private String city;
 
-	@Column(name="STATE")
+	@Column(name = "STATE")
 	private String state;
 
 	public long getId() {
@@ -45,8 +44,6 @@ public class User implements Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
-	
 
 	public String getPassword() {
 		return password;
@@ -77,9 +74,8 @@ public class User implements Serializable {
 		return "User [id=" + id + ", username=" + username + ", city=" + city + ", state=" + state + "]";
 	}
 
-	/*@Column
-	private Set<Interest> set;*/
-
-	
+	/*
+	 * @Column private Set<Interest> set;
+	 */
 
 }
