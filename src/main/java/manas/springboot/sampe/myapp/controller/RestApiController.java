@@ -58,8 +58,8 @@ public class RestApiController {
 
 	// -------------------Create a Event-------------------------------------------
 
-	@RequestMapping(value = "/event/", method = RequestMethod.POST)
-	public ResponseEntity<?> createEvent(@RequestBody Event event, UriComponentsBuilder ucBuilder) {
+	@RequestMapping(value = "/event/", method = RequestMethod.POST,consumes="application/json",headers = "content-type=application/x-www-form-urlencoded")
+	public ResponseEntity<?> createEvent(Event event, UriComponentsBuilder ucBuilder) {
 		logger.info("Creating Event : {}", event);
 
 		if (eventsService.isEventExist(event)) {
